@@ -22,7 +22,8 @@ function isAdminLoggedIn(req, res, next) {
 // GET ROUTES
 
 router.get('/', isLoggedIn, function (req, res, next) {
-  res.render('index');
+  const { username, name } = req.session.user;
+  res.render('index', { username, name });
 });
 
 router.get('/userLogin', function (req, res, next) {
@@ -46,7 +47,8 @@ router.get('/adminRegister', function (req, res, next) {
 });
 
 router.get('/adminHome', isAdminLoggedIn, function (req, res, next) {
-  res.render('adminHome', { user: 'Vanshi' });
+  const { username, fullname } = req.session.admin;
+  res.render('adminHome', { username, fullname });
 });
 
 router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
@@ -88,11 +90,13 @@ router.post('/userLogin', async (req, res) => {
     if (!user || user.password !== password) {
       req.flash('error', 'Username or Password is Incorrect');
       return res.redirect('/userLogin');
-      // return res.status(400).send('Username or Password Incorrect');
     }
-
     // Create a session for the user
-    req.session.user = { id: user._id, username: user.username };
+    req.session.user = {
+      id: user._id,
+      username: user.username,
+      name: user.name,
+    };
     res.status(201).redirect('/');
   } catch (error) {
     res.status(400).send(error.message);
@@ -106,7 +110,6 @@ router.post('/adminRegister', async function (req, res, next) {
       username: req.body.username,
     });
     if (existingAdmin) {
-      // return res.status(400).send('Username already exists');
       req.flash('error', 'Username Already Exists');
       return res.redirect('/adminRegister');
     }
@@ -115,7 +118,6 @@ router.post('/adminRegister', async function (req, res, next) {
     if (existingAdminID) {
       req.flash('error', 'Admin ID Already Exists');
       return res.redirect('/adminRegister');
-      // return res.status(400).send('ID already exists');
     }
 
     const registerAdmin = new AdminRegister({
@@ -143,10 +145,13 @@ router.post('/adminLogin', async (req, res) => {
     if (!admin || admin.password !== password) {
       req.flash('error', 'Username, Password, or ID is Incorrect');
       return res.redirect('/adminLogin');
-      // return res.status(400).send('Username, Password, or ID Incorrect');
     }
     // Create a session for the admin
-    req.session.admin = { id: admin._id, username: admin.username };
+    req.session.admin = {
+      id: admin._id,
+      username: admin.username,
+      fullname: admin.fullname,
+    };
     res.status(201).redirect('/adminHome');
   } catch (error) {
     res.status(400).send(error.message);
