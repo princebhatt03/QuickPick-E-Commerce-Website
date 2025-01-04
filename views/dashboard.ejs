@@ -9,7 +9,7 @@
     <meta
       http-equiv="x-ua-compatible"
       content="ie=edge" />
-    <title>QuickPick - Admin's Profile</title>
+    <title>QuickPick - Admin's Dashboard</title>
     <meta
       name="description"
       content="description" />
@@ -133,7 +133,18 @@
                   aria-hidden="true"></i
               ></span>
               <ul class="customer-links list-inline">
-                <li><a href="/logout">Logout</a></li>
+                <li>
+                  <a href="#"><div class="name"><%= username %></div></a>
+                </li>
+                <li>
+                  <a href="#"><div class="about"><%= fullname %></div></a>
+                </li>
+                <li>
+                  <a href="/adminProfile"
+                    ><div class="about">Edit profile</div></a
+                  >
+                </li>
+                <li><a href="/adminLogout">Logout</a></li>
               </ul>
             </div>
           </div>
@@ -143,9 +154,9 @@
         <div
           class="container d-flex justify-content-center align-items-center flex-column">
           <img
-            style="width: 15%; border-radius: 50%; border: 1px solid black"
-            class="mt-4 mb-4 d-flex justify-content-center align-items-center"
-            src="/images/profIcon.jpg"
+            style="width: 20%; border-radius: 50%; border: 1px solid black"
+            class="mt-2 d-flex justify-content-center align-items-center"
+            src="/images/admins/1.png"
             alt="" />
           <div class="row">
             <div
@@ -160,15 +171,13 @@
                   <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div class="form-group">
-                        <label for="Product">Change Profile Picture</label>
-                        <br />
+                        <label for="Product">Product Title</label>
                         <input
-                          style="width: 100%"
-                          type="file"
-                          name="profile"
+                          type="text"
+                          name="pname"
                           placeholder=""
                           id="CustomerEmail"
-                          class="btn"
+                          class=""
                           required
                           autocorrect="off"
                           autocapitalize="off"
@@ -177,31 +186,18 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div class="form-group">
-                        <label for="password">Change Username</label>
+                        <label for="password">Product type</label>
                         <input
                           type="text"
                           value=""
                           required
-                          name="username"
+                          name="ptype"
                           placeholder=""
                           id="CustomerPassword"
                           class="" />
                       </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="form-group">
-                        <label for="password">Change User ID</label>
-                        <input
-                          type="tel"
-                          value=""
-                          required
-                          name="id"
-                          placeholder=""
-                          id="CustomerPassword"
-                          class="" />
-                      </div>
-                    </div>
-                    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div class="form-group">
                         <label for="password">Upload Product Image</label>
                         <br />
@@ -221,7 +217,7 @@
                           id="CustomerPassword"
                           class="btn btn-primary" />
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                   <div class="row">
                     <div
@@ -229,23 +225,12 @@
                       <input
                         type="submit"
                         class="btn mb-3"
-                        value="Update Profile" />
+                        value="Upload Product" />
                       <p class="mb-4 d-flex flex-column">
                         <!-- <a
                           href="/reg"
                           id="RecoverPassword"
                           >Forgot your password?</a
-                        > -->
-
-                        <!-- <a
-                          href="/reg"
-                          id="customer_register_link"
-                          >Don't Have Account? Sign Up</a
-                        > -->
-                        <!-- <a
-                          href="/adminL"
-                          id="customer_register_link"
-                          >Are you a Admin? Admin's Login</a
                         > -->
                       </p>
                     </div>
