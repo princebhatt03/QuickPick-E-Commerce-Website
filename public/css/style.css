@@ -748,9 +748,9 @@ textarea:-ms-input-placeholder {
 }
 
 .logo {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin: 0;
+  padding: 2px;
+  width: 2rem;
+  height: 7rem;
 }
 
 .stickyNav {
@@ -1082,6 +1082,9 @@ textarea:-ms-input-placeholder {
   #siteNav > li {
     display: inline-block;
     text-align: left;
+  }
+  .logo {
+    display: none;
   }
   #siteNav > li > a {
     color: #000000;
