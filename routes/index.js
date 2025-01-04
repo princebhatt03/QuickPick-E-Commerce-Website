@@ -41,11 +41,6 @@ router.get('/col', isLoggedIn, function (req, res, next) {
   res.render('col', { username, name });
 });
 
-// router.get('/', isLoggedIn, function (req, res, next) {
-//   const { username, name } = req.session.user;
-//   res.render('index', { username, name });
-// });
-
 router.get('/about', isLoggedIn, function (req, res, next) {
   const { username, name } = req.session.user;
   res.render('about', { username, name });
@@ -150,17 +145,88 @@ router.get('/adminRegister', function (req, res, next) {
 });
 
 router.get('/adminHome', isAdminLoggedIn, function (req, res, next) {
-  const { username, fullname } = req.session.admin;
-  res.render('adminHome', { username, fullname });
-});
+  const success = req.flash('success'); // Get the success message
+  const error = req.flash('error'); // Get the error message
 
-router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
-  res.render('adminProfile');
+  const { username, fullname } = req.session.admin;
+  // Render 'adminHome' and pass the flash messages and admin data
+  res.render('adminHome', {
+    success, // Pass success message
+    error, // Pass error message
+    username, // Pass admin username
+    fullname, // Pass admin fullname
+  });
 });
 
 router.get('/dashboard', isAdminLoggedIn, async (req, res) => {
   const { username, fullname } = req.session.admin;
   res.render('dashboard', { username, fullname });
+});
+
+// router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
+//   const success = req.flash('success');
+//   const error = req.flash('error');
+//   res.render('adminProfile', { success, error });
+// });
+
+router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
+  // Retrieve the flash messages
+  const success = req.flash('success');
+  const error = req.flash('error');
+  console.log(success, error);
+  // Get the logged-in admin's data from the session
+  const { username, fullname, ID } = req.session.admin;
+
+  // Render the 'adminProfile' view and pass the admin data, success, and error messages
+  res.render('adminProfile', {
+    success,
+    error,
+    admin: { username, fullname, ID },
+  });
+});
+
+// Admin's Update Profile Route...
+
+router.post('/adminProfile', isAdminLoggedIn, async (req, res) => {
+  try {
+    const { fullname, username, ID } = req.body;
+    const adminId = req.session.admin.id;
+
+    // Check if the new username or ID already exists (to avoid conflicts)
+    const existingUsername = await AdminRegister.findOne({
+      username,
+      _id: { $ne: adminId },
+    });
+    if (existingUsername) {
+      req.flash('error', 'Username already exists. Please choose another one.');
+      return res.redirect('/adminHome'); // Redirect to adminHome with error message
+    }
+
+    const existingID = await AdminRegister.findOne({
+      ID,
+      _id: { $ne: adminId },
+    });
+    if (existingID) {
+      req.flash('error', 'Admin ID already exists. Please choose another one.');
+      // req.flash('error', error.message);
+      return res.redirect('/adminHome'); // Redirect to adminHome with error message
+    }
+
+    // Update the admin's information in MongoDB
+    await AdminRegister.findByIdAndUpdate(adminId, { fullname, username, ID });
+
+    // Update session data to reflect changes
+    req.session.admin.fullname = fullname;
+    req.session.admin.username = username;
+    // console.log('Error:', error);
+
+    req.flash('success', 'Profile updated successfully!');
+    // req.flash('success', success.message);
+    res.redirect('/adminHome'); // Redirect to adminHome with success message
+  } catch (error) {
+    req.flash('error', error.message);
+    res.redirect('/adminProfile'); // Redirect to adminHome with error message
+  }
 });
 
 // USER's POST ROUTES

@@ -142,114 +142,69 @@
       <div id="page-content">
         <div
           class="container d-flex justify-content-center align-items-center flex-column">
-          <img
+          <% if (typeof success !== 'undefined' && success.length > 0) { %>
+          <script>
+            alert('<%= success %>');
+          </script>
+          <% } %> <% if (typeof error !== 'undefined' && error.length > 0) { %>
+          <script>
+            alert('<%= error %>');
+          </script>
+          <% } %>
+
+          <!-- <img
             style="width: 15%; border-radius: 50%; border: 1px solid black"
             class="mt-4 mb-4 d-flex justify-content-center align-items-center"
             src="/images/profIcon.jpg"
-            alt="" />
-          <div class="row">
+            alt="" /> -->
+          <div
+            style="width: 100%; padding: 14px; position: relative"
+            class="row">
             <div
+              style="width: 100%; padding: 12px"
               class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
               <div class="mb-4">
                 <form
-                  method="post"
-                  action="#"
-                  id="CustomerLoginForm"
-                  accept-charset="UTF-8"
-                  class="contact-form">
-                  <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="form-group">
-                        <label for="Product">Change Profile Picture</label>
-                        <br />
-                        <input
-                          style="width: 100%"
-                          type="file"
-                          name="profile"
-                          placeholder=""
-                          id="CustomerEmail"
-                          class="btn"
-                          required
-                          autocorrect="off"
-                          autocapitalize="off"
-                          autofocus="" />
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="form-group">
-                        <label for="password">Change Username</label>
-                        <input
-                          type="text"
-                          value=""
-                          required
-                          name="username"
-                          placeholder=""
-                          id="CustomerPassword"
-                          class="" />
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="form-group">
-                        <label for="password">Change User ID</label>
-                        <input
-                          type="tel"
-                          value=""
-                          required
-                          name="id"
-                          placeholder=""
-                          id="CustomerPassword"
-                          class="" />
-                      </div>
-                    </div>
-                    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="form-group">
-                        <label for="password">Upload Product Image</label>
-                        <br />
-                        <input
-                          style="
-                            width: 100%;
-                            text-align: center;
-                            display: flex;
-                            justify-self: center;
-                            align-items: center;
-                          "
-                          type="file"
-                          value=""
-                          required
-                          name="pimg"
-                          placeholder=""
-                          id="CustomerPassword"
-                          class="btn btn-primary" />
-                      </div>
-                    </div> -->
+                  action="/adminProfile"
+                  method="POST">
+                  <div>
+                    <label for="fullname">Full Name:</label>
+                    <input
+                      type="text"
+                      id="fullname"
+                      name="fullname"
+                      value="<%= admin.fullname %>"
+                      required />
                   </div>
-                  <div class="row">
-                    <div
-                      class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-                      <input
-                        type="submit"
-                        class="btn mb-3"
-                        value="Update Profile" />
-                      <p class="mb-4 d-flex flex-column">
-                        <!-- <a
-                          href="/reg"
-                          id="RecoverPassword"
-                          >Forgot your password?</a
-                        > -->
-
-                        <!-- <a
-                          href="/reg"
-                          id="customer_register_link"
-                          >Don't Have Account? Sign Up</a
-                        > -->
-                        <!-- <a
-                          href="/adminL"
-                          id="customer_register_link"
-                          >Are you a Admin? Admin's Login</a
-                        > -->
-                      </p>
-                    </div>
+                  <div>
+                    <label for="username">Username:</label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value="<%= admin.username %>"
+                      required />
                   </div>
+                  <div>
+                    <label for="ID">Admin ID:</label>
+                    <input
+                      type="text"
+                      id="ID"
+                      name="ID"
+                      value="<%= admin.ID %>"
+                      required />
+                  </div>
+                  <button
+                    style="
+                      cursor: pointer;
+                      padding: 10px;
+                      margin: 10px;
+                      position: absolute;
+                      left: 40%;
+                    "
+                    type="submit">
+                    Update Profile
+                  </button>
                 </form>
               </div>
             </div>
