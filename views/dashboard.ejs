@@ -154,7 +154,12 @@
         <div
           class="container d-flex justify-content-center align-items-center flex-column">
           <img
-            style="width: 20%; border-radius: 50%; border: 1px solid black"
+            style="
+              width: 10%;
+              object-fit: contain;
+              border-radius: 50%;
+              border: 1px solid black;
+            "
             class="mt-2 d-flex justify-content-center align-items-center"
             src="/images/admins/1.png"
             alt="" />
@@ -164,42 +169,25 @@
               <div class="mb-4">
                 <form
                   method="post"
-                  action="#"
-                  id="CustomerLoginForm"
+                  action="/product"
+                  enctype="multipart/form-data"
                   accept-charset="UTF-8"
                   class="contact-form">
                   <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div class="form-group">
-                        <label for="Product">Product Title</label>
+                        <label for="name">Product Title</label>
                         <input
                           type="text"
-                          name="pname"
+                          name="name"
                           placeholder=""
                           id="CustomerEmail"
-                          class=""
-                          required
-                          autocorrect="off"
-                          autocapitalize="off"
                           autofocus="" />
                       </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div class="form-group">
-                        <label for="password">Product type</label>
-                        <input
-                          type="text"
-                          value=""
-                          required
-                          name="ptype"
-                          placeholder=""
-                          id="CustomerPassword"
-                          class="" />
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div class="form-group">
-                        <label for="password">Upload Product Image</label>
+                        <label for="image">Upload Product Image 1</label>
                         <br />
                         <input
                           style="
@@ -210,12 +198,81 @@
                             align-items: center;
                           "
                           type="file"
-                          value=""
                           required
-                          name="pimg"
-                          placeholder=""
-                          id="CustomerPassword"
+                          name="image"
                           class="btn btn-primary" />
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="form-group">
+                        <label for="image2">Upload Product Image 2</label>
+                        <br />
+                        <input
+                          style="
+                            width: 100%;
+                            text-align: center;
+                            display: flex;
+                            justify-self: center;
+                            align-items: center;
+                          "
+                          type="file"
+                          required
+                          name="image2"
+                          class="btn btn-primary" />
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="form-group">
+                        <label for="off"
+                          >Offer (Optional, if product has offer write -10% or
+                          any...)</label
+                        >
+                        <input
+                          type="text"
+                          name="off"
+                          placeholder=""
+                          id="CustomerEmail"
+                          autofocus="" />
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="form-group">
+                        <label for="avail"
+                          >Availablity (Available or not)</label
+                        >
+                        <input
+                          type="text"
+                          name="avail"
+                          required
+                          placeholder=""
+                          id="CustomerEmail"
+                          autofocus="" />
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="form-group">
+                        <label for="price">Enter Amount</label>
+                        <input
+                          type="text"
+                          name="price"
+                          required
+                          placeholder=""
+                          id="CustomerEmail"
+                          autofocus="" />
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="form-group">
+                        <label for="size"
+                          >Enter Size (SM, M, L, XL, XXL, XXXL)</label
+                        >
+                        <input
+                          type="text"
+                          name="size"
+                          required
+                          placeholder=""
+                          id="CustomerEmail"
+                          autofocus="" />
                       </div>
                     </div>
                   </div>
@@ -226,13 +283,6 @@
                         type="submit"
                         class="btn mb-3"
                         value="Upload Product" />
-                      <p class="mb-4 d-flex flex-column">
-                        <!-- <a
-                          href="/reg"
-                          id="RecoverPassword"
-                          >Forgot your password?</a
-                        > -->
-                      </p>
                     </div>
                   </div>
                 </form>

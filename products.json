@@ -5,6 +5,8 @@
     },
     "name": "Jacket",
     "image": "product-image44.jpg",
+    "off": "-16%",
+    "avail": "Unavailable",
     "image2": "product-image44-1.jpg",
     "price": "890",
     "size": "SM/M/L"
@@ -15,6 +17,8 @@
     },
     "name": "Leggy",
     "image": "product-image30.jpg",
+    "off": "-20%",
+    "avail": "Available",
     "image2": "product-image30-1.jpg",
     "price": "300",
     "size": "L/XL/XXL"
@@ -26,6 +30,8 @@
     "name": "Boomer Jacket",
     "image": "product-image36.jpg",
     "image2": "product-image36-1.jpg",
+    "off": "-50%",
+    "avail": "Available",
     "price": "900",
     "size": "SM/M/L"
   },
@@ -36,6 +42,8 @@
     "name": "Men's Suits",
     "image": "product-image33.jpg",
     "image2": "product-image33-1.jpg",
+    "off": "-10%",
+    "avail": "Unavailable",
     "price": "5000",
     "size": "All Size"
   },
@@ -46,6 +54,8 @@
     "name": "Winter Suits",
     "image": "product-image38.jpg",
     "image2": "product-image38-1.jpg",
+    "off": "-20%",
+    "avail": "Unavailable",
     "price": "3500",
     "size": "M/L/XL"
   },
@@ -56,6 +66,8 @@
     "name": "Gauns",
     "image": "product-image26.jpg",
     "image2": "product-image26-1.jpg",
+    "off": "-30%",
+    "avail": "Unavailable",
     "price": "200",
     "size": "small"
   },
@@ -66,6 +78,8 @@
     "name": "One Piece",
     "image": "product-image23.jpg",
     "image2": "product-image23-1.jpg",
+    "off": "-5%",
+    "avail": "Unavailable",
     "price": "600",
     "size": "large"
   },
@@ -76,6 +90,8 @@
     "name": "Crop Tops",
     "image": "product-image21.jpg",
     "image2": "product-image21-1.jpg",
+    "off": "-10%",
+    "avail": "Available",
     "price": "500",
     "size": "medium"
   }

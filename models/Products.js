@@ -14,6 +14,14 @@ const prodSchema = new Schema({
     type: String,
     required: true,
   },
+  off: {
+    type: String,
+    required: true,
+  },
+  avail: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,

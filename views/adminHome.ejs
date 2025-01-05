@@ -181,17 +181,17 @@
                         class="primary blur-up lazyload"
                         data-src="/images/product-images/<%= prod.image%>"
                         src="/images/product-images/<%= prod.image%>"
-                        alt="image"
+                        alt="Product Image"
                         title="product" />
                       <img
                         class="hover blur-up lazyload"
                         data-src="/images/product-images/<%= prod.image2%>"
                         src="/images/product-images/<%= prod.image2%>"
-                        alt="image"
+                        alt="Hover Images"
                         title="product" />
                       <div class="product-labels rectangular">
-                        <span class="lbl on-sale">-16%</span>
-                        <span class="lbl pr-label1">Available</span>
+                        <span class="lbl on-sale"><%= prod.off%></span>
+                        <span class="lbl pr-label1"><%= prod.avail%></span>
                       </div>
                     </a>
                   </div>
@@ -202,7 +202,8 @@
                       <button
                         class="hover"
                         style="
-                          width: 10vw;
+                          width: auto;
+                          border: none;
                           padding: 5px;
                           margin: 5px;
                           cursor: pointer;
@@ -216,7 +217,8 @@
                       <button
                         class="hover"
                         style="
-                          width: 10vw;
+                          width: auto;
+                          border: none;
                           padding: 5px;
                           margin: 5px;
                           cursor: pointer;
@@ -230,8 +232,9 @@
                       <button
                         class="hover"
                         style="
-                          width: 10vw;
+                          width: auto;
                           padding: 5px;
+                          border: none;
                           margin: 5px;
                           cursor: pointer;
                           font-size: 15px;
