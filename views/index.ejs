@@ -139,12 +139,22 @@
                 <li>
                   <a href="#"><div class="about"><%= name %></div></a>
                 </li>
+                <li>
+                  <a href="/userProfile"
+                    ><div class="about">Edit Profile</div></a
+                  >
+                </li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      <% if (messages.success && messages.success.length > 0) { %>
+      <div class="alert alert-success"><%= messages.success %></div>
+      <% } %> <% if (messages.error && messages.error.length > 0) { %>
+      <div class="alert alert-danger"><%= messages.error %></div>
+      <% } %>
       <div class="header-wrap animated d-flex">
         <div class="container-fluid">
           <div class="row align-items-center">
@@ -1812,6 +1822,7 @@
           </li>
         </ul>
       </div>
+
       <div id="page-content">
         <div class="slideshow slideshow-wrapper pb-section sliderFull">
           <div class="home-slideshow">

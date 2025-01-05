@@ -22,8 +22,23 @@ function isAdminLoggedIn(req, res, next) {
 // USER's GET ROUTES
 
 router.get('/', isLoggedIn, function (req, res, next) {
+  const success = req.flash('success');
+  const error = req.flash('error');
   const { username, name } = req.session.user;
-  res.render('index', { username, name });
+
+  res.render('index', { username, name, success, error });
+});
+
+router.get('/userProfile', isLoggedIn, (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash('error');
+  const { username, name } = req.session.user;
+
+  res.render('userProfile', {
+    success,
+    error,
+    user: { username, name },
+  });
 });
 
 router.get('/userLogin', function (req, res, next) {
@@ -189,8 +204,29 @@ router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
 
 router.post('/adminProfile', isAdminLoggedIn, async (req, res) => {
   try {
-    const { fullname, username, ID } = req.body;
+    const {
+      fullname,
+      username,
+      ID,
+      currentPassword,
+      newPassword,
+      confirmPassword,
+    } = req.body;
     const adminId = req.session.admin.id;
+
+    // Fetch the admin from the database
+    const admin = await AdminRegister.findById(adminId);
+
+    if (!admin) {
+      req.flash('error', 'Admin not found.');
+      return res.redirect('/adminHome');
+    }
+
+    // Verify the current password
+    if (currentPassword && admin.password !== currentPassword) {
+      req.flash('error', 'Current password is incorrect.');
+      return res.redirect('/adminHome'); // Exit without updating anything
+    }
 
     // Check if the new username or ID already exists (to avoid conflicts)
     const existingUsername = await AdminRegister.findOne({
@@ -199,7 +235,7 @@ router.post('/adminProfile', isAdminLoggedIn, async (req, res) => {
     });
     if (existingUsername) {
       req.flash('error', 'Username already exists. Please choose another one.');
-      return res.redirect('/adminHome'); // Redirect to adminHome with error message
+      return res.redirect('/adminHome');
     }
 
     const existingID = await AdminRegister.findOne({
@@ -208,24 +244,95 @@ router.post('/adminProfile', isAdminLoggedIn, async (req, res) => {
     });
     if (existingID) {
       req.flash('error', 'Admin ID already exists. Please choose another one.');
-      // req.flash('error', error.message);
-      return res.redirect('/adminHome'); // Redirect to adminHome with error message
+      return res.redirect('/adminHome');
     }
 
-    // Update the admin's information in MongoDB
-    await AdminRegister.findByIdAndUpdate(adminId, { fullname, username, ID });
+    // Validate and update the password if provided
+    if (newPassword || confirmPassword) {
+      if (newPassword !== confirmPassword) {
+        req.flash('error', 'New password and confirm password do not match.');
+        return res.redirect('/adminHome');
+      }
+      admin.password = newPassword; // Replace with a hashed password if applicable
+    }
+
+    // Update the admin's other details
+    admin.fullname = fullname;
+    admin.username = username;
+    admin.ID = ID;
+
+    // Save the updated admin to the database
+    await admin.save();
 
     // Update session data to reflect changes
     req.session.admin.fullname = fullname;
     req.session.admin.username = username;
-    // console.log('Error:', error);
 
     req.flash('success', 'Profile updated successfully!');
-    // req.flash('success', success.message);
     res.redirect('/adminHome'); // Redirect to adminHome with success message
   } catch (error) {
     req.flash('error', error.message);
-    res.redirect('/adminProfile'); // Redirect to adminHome with error message
+    res.redirect('/adminHome');
+  }
+});
+
+// User's Update Profile Route...
+router.post('/userProfile', isLoggedIn, async (req, res) => {
+  try {
+    const { name, username, currentPassword, newPassword, confirmPassword } =
+      req.body;
+
+    const userId = req.session.user.id;
+
+    // Fetch the user from the database
+    const user = await userRegister.findById(userId);
+
+    if (!user) {
+      req.flash('error', 'User not found.');
+      return res.redirect('/');
+    }
+
+    // Verify the current password
+    if (currentPassword && user.password !== currentPassword) {
+      req.flash('error', 'Current password is incorrect.');
+      return res.redirect('/'); // Exit without updating anything
+    }
+
+    // Check if the new username already exists (to avoid conflicts)
+    const existingUsername = await userRegister.findOne({
+      username,
+      _id: { $ne: userId },
+    });
+    if (existingUsername) {
+      req.flash('error', 'Username already exists. Please choose another one.');
+      return res.redirect('/');
+    }
+
+    // Validate and update the password if provided
+    if (newPassword || confirmPassword) {
+      if (newPassword !== confirmPassword) {
+        req.flash('error', 'New password and confirm password do not match.');
+        return res.redirect('/');
+      }
+      user.password = newPassword; // Replace with hashed password if applicable
+    }
+
+    // Update the user's other details
+    user.name = name;
+    user.username = username;
+
+    // Save the updated user to the database
+    await user.save();
+
+    // Update session data to reflect changes
+    req.session.user.name = name;
+    req.session.user.username = username;
+
+    req.flash('success', 'Profile updated successfully!');
+    res.redirect('/'); // Redirect to the user's home page with a success message
+  } catch (error) {
+    req.flash('error', error.message);
+    res.redirect('/');
   }
 });
 

@@ -9,7 +9,7 @@
     <meta
       http-equiv="x-ua-compatible"
       content="ie=edge" />
-    <title>QuickPick - Admin's Profile</title>
+    <title>QuickPick - User's Profile</title>
     <meta
       name="description"
       content="description" />
@@ -123,7 +123,7 @@
             <div
               class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
               <div class="text-center cursor-pointer">
-                <p class="top-header_middle-text">Admin's Dashboard</p>
+                <p class="top-header_middle-text">User's Profile</p>
               </div>
             </div>
             <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
@@ -142,16 +142,6 @@
       <div id="page-content">
         <div
           class="container d-flex justify-content-center align-items-center flex-column">
-          <% if (typeof success !== 'undefined' && success.length > 0) { %>
-          <script>
-            alert('<%= success %>');
-          </script>
-          <% } %> <% if (typeof error !== 'undefined' && error.length > 0) { %>
-          <script>
-            alert('<%= error %>');
-          </script>
-          <% } %>
-
           <!-- <img
             style="width: 15%; border-radius: 50%; border: 1px solid black"
             class="mt-4 mb-4 d-flex justify-content-center align-items-center"
@@ -165,47 +155,35 @@
               class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
               <div class="mb-4">
                 <form
-                  action="/adminProfile"
+                  action="/userProfile"
                   method="POST">
-                  <label for="fullname">Full Name</label>
+                  <label>Change Name:</label>
                   <input
                     type="text"
-                    name="fullname"
-                    id="fullname"
+                    name="name"
                     required />
 
-                  <label for="username">Username</label>
+                  <label>Change Username:</label>
                   <input
                     type="text"
                     name="username"
-                    id="username"
                     required />
 
-                  <label for="ID">Admin ID</label>
-                  <input
-                    type="text"
-                    name="ID"
-                    id="ID"
-                    required />
-
-                  <!-- Password Change Fields -->
-                  <label for="currentPassword">Current Password</label>
+                  <label>Current Password:</label>
                   <input
                     type="password"
                     name="currentPassword"
-                    id="currentPassword" />
+                    required />
 
-                  <label for="newPassword">New Password</label>
+                  <label>New Password:</label>
                   <input
                     type="password"
-                    name="newPassword"
-                    id="newPassword" />
+                    name="newPassword" />
 
-                  <label for="confirmPassword">Confirm New Password</label>
+                  <label>Confirm New Password:</label>
                   <input
                     type="password"
-                    name="confirmPassword"
-                    id="confirmPassword" />
+                    name="confirmPassword" />
 
                   <button type="submit">Update Profile</button>
                 </form>
