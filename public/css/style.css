@@ -28,6 +28,10 @@ body {
   margin: 0;
   padding: 0;
 }
+.hover:hover {
+  background-color: black;
+  color: white;
+}
 article,
 aside,
 details,
@@ -1069,6 +1073,7 @@ textarea:-ms-input-placeholder {
 .site-header__logo.mobileview {
   display: none;
 }
+
 @media (min-width: 990px) {
   #siteNav a {
     text-decoration: none;
@@ -1086,6 +1091,7 @@ textarea:-ms-input-placeholder {
   .logo {
     display: none;
   }
+
   #siteNav > li > a {
     color: #000000;
     padding: 0 20px;
