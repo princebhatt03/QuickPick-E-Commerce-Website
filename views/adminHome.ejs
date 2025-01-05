@@ -173,180 +173,76 @@
             </div>
             <div class="related-product grid-products">
               <div class="productPageSlider">
+                <% prods.forEach(function(prod){ %>
                 <div class="col-12 item">
                   <div class="product-image">
                     <a href="#">
                       <img
                         class="primary blur-up lazyload"
-                        data-src="/images/product-images/product-image6.jpg"
-                        src="/images/product-images/product-image6.jpg"
+                        data-src="/images/product-images/<%= prod.image%>"
+                        src="/images/product-images/<%= prod.image%>"
                         alt="image"
                         title="product" />
                       <img
                         class="hover blur-up lazyload"
-                        data-src="/images/product-images/product-image6-1.jpg"
-                        src="/images/product-images/product-image6-1.jpg"
+                        data-src="/images/product-images/<%= prod.image2%>"
+                        src="/images/product-images/<%= prod.image2%>"
                         alt="image"
                         title="product" />
                       <div class="product-labels rectangular">
                         <span class="lbl on-sale">-16%</span>
-                        <span class="lbl pr-label1">new</span>
+                        <span class="lbl pr-label1">Available</span>
                       </div>
                     </a>
                   </div>
-                  <div class="product-details text-center">
+                  <div
+                    style="padding: 5px"
+                    class="product-details text-center">
                     <div class="product-name">
-                      <a href="#">Zipper Jacket</a>
+                      <button
+                        class="hover"
+                        style="
+                          width: 10vw;
+                          padding: 5px;
+                          margin: 5px;
+                          cursor: pointer;
+                          font-size: 15px;
+                          font-weight: 600;
+                        ">
+                        <%=prod.name %>
+                      </button>
+                    </div>
+                    <div class="product-name">
+                      <button
+                        class="hover"
+                        style="
+                          width: 10vw;
+                          padding: 5px;
+                          margin: 5px;
+                          cursor: pointer;
+                          font-size: 15px;
+                          font-weight: 600;
+                        ">
+                        <%=prod.size %>
+                      </button>
+                    </div>
+                    <div class="product-name">
+                      <button
+                        class="hover"
+                        style="
+                          width: 10vw;
+                          padding: 5px;
+                          margin: 5px;
+                          cursor: pointer;
+                          font-size: 15px;
+                          font-weight: 600;
+                        ">
+                        ₹<%=prod.price %>
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 item">
-                  <div class="product-image">
-                    <a href="#">
-                      <img
-                        class="primary blur-up lazyload"
-                        data-src="/images/product-images/product-image7.jpg"
-                        src="/images/product-images/product-image7.jpg"
-                        alt="image"
-                        title="product" />
-                      <img
-                        class="hover blur-up lazyload"
-                        data-src="/images/product-images/product-image7-1.jpg"
-                        src="/images/product-images/product-image7-1.jpg"
-                        alt="image"
-                        title="product" />
-                    </a>
-                  </div>
-                  <div class="product-details text-center">
-                    <div class="product-name">
-                      <a href="#">Zipper Jacket</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 item">
-                  <div class="product-image">
-                    <a href="#">
-                      <img
-                        class="primary blur-up lazyload"
-                        data-src="/images/product-images/product-image8.jpg"
-                        src="/images/product-images/product-image8.jpg"
-                        alt="image"
-                        title="product" />
-                      <img
-                        class="hover blur-up lazyload"
-                        data-src="/images/product-images/product-image8-1.jpg"
-                        src="/images/product-images/product-image8-1.jpg"
-                        alt="image"
-                        title="product" />
-                    </a>
-                  </div>
-                  <div class="product-details text-center">
-                    <!-- product name -->
-                    <div class="product-name">
-                      <a href="#">Workers Shirt Jacket</a>
-                    </div>
-                    <!-- End product name -->
-                  </div>
-                  <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                  <div class="product-image">
-                    <a href="#">
-                      <img
-                        class="primary blur-up lazyload"
-                        data-src="/images/product-images/product-image9.jpg"
-                        src="/images/product-images/product-image9.jpg"
-                        alt="image"
-                        title="product" />
-                      <img
-                        class="hover blur-up lazyload"
-                        data-src="/images/product-images/product-image9-1.jpg"
-                        src="/images/product-images/product-image9-1.jpg"
-                        alt="image"
-                        title="product" />
-                    </a>
-                  </div>
-                  <div class="product-details text-center">
-                    <!-- product name -->
-                    <div class="product-name">
-                      <a href="#">Watercolor Sport Jacket in Brown/Blue</a>
-                    </div>
-                    <!-- End product name -->
-                  </div>
-                </div>
-                <div class="col-12 item">
-                  <!-- start product image -->
-                  <div class="product-image">
-                    <!-- start product image -->
-                    <a href="#">
-                      <!-- image -->
-                      <img
-                        class="primary blur-up lazyload"
-                        data-src="/images/product-images/product-image10.jpg"
-                        src="/images/product-images/product-image10.jpg"
-                        alt="image"
-                        title="product" />
-                      <!-- End image -->
-                      <!-- Hover image -->
-                      <img
-                        class="hover blur-up lazyload"
-                        data-src="/images/product-images/product-image10-1.jpg"
-                        src="/images/product-images/product-image10-1.jpg"
-                        alt="image"
-                        title="product" />
-                      <!-- End hover image -->
-                    </a>
-                    <!-- end product image -->
-                  </div>
-                  <!-- end product image -->
-
-                  <!--start product details -->
-                  <div class="product-details text-center">
-                    <!-- product name -->
-                    <div class="product-name">
-                      <a href="#">Washed Wool Blazer</a>
-                    </div>
-                    <!-- End product name -->
-                  </div>
-                  <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                  <!-- start product image -->
-                  <div class="product-image">
-                    <!-- start product image -->
-                    <a href="#">
-                      <!-- image -->
-                      <img
-                        class="primary blur-up lazyload"
-                        data-src="/images/product-images/product-image13.jpg"
-                        src="/images/product-images/product-image13.jpg"
-                        alt="image"
-                        title="product" />
-                      <!-- End image -->
-                      <!-- Hover image -->
-                      <img
-                        class="hover blur-up lazyload"
-                        data-src="/images/product-images/product-image13-1.jpg"
-                        src="/images/product-images/product-image13-1.jpg"
-                        alt="image"
-                        title="product" />
-                      <!-- End hover image -->
-                    </a>
-                    <!-- end product image -->
-                  </div>
-
-                  <!-- end product image -->
-
-                  <!--start product details -->
-                  <div class="product-details text-center">
-                    <!-- product name -->
-                    <div class="product-name">
-                      <a href="#">Ashton Necklace</a>
-                    </div>
-                    <!-- End product name -->
-                  </div>
-                  <!-- End product details -->
-                </div>
+                <% }) %>
               </div>
             </div>
           </div>

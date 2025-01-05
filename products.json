@@ -1,0 +1,82 @@
+[
+  {
+    "_id": {
+      "$oid": "5eee651f739f8c674fd736ee"
+    },
+    "name": "Jacket",
+    "image": "product-image44.jpg",
+    "image2": "product-image44-1.jpg",
+    "price": "890",
+    "size": "SM/M/L"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6671a27a66807cf2bea3"
+    },
+    "name": "Leggy",
+    "image": "product-image30.jpg",
+    "image2": "product-image30-1.jpg",
+    "price": "300",
+    "size": "L/XL/XXL"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6692a27a66807cf2bea4"
+    },
+    "name": "Boomer Jacket",
+    "image": "product-image36.jpg",
+    "image2": "product-image36-1.jpg",
+    "price": "900",
+    "size": "SM/M/L"
+  },
+  {
+    "_id": {
+      "$oid": "5eee66a5a27a66807cf2bea5"
+    },
+    "name": "Men's Suits",
+    "image": "product-image33.jpg",
+    "image2": "product-image33-1.jpg",
+    "price": "5000",
+    "size": "All Size"
+  },
+  {
+    "_id": {
+      "$oid": "5eee66c4a27a66807cf2bea6"
+    },
+    "name": "Winter Suits",
+    "image": "product-image38.jpg",
+    "image2": "product-image38-1.jpg",
+    "price": "3500",
+    "size": "M/L/XL"
+  },
+  {
+    "_id": {
+      "$oid": "5eee66cfa27a66807cf2bea7"
+    },
+    "name": "Gauns",
+    "image": "product-image26.jpg",
+    "image2": "product-image26-1.jpg",
+    "price": "200",
+    "size": "small"
+  },
+  {
+    "_id": {
+      "$oid": "5eee66eea27a66807cf2bea8"
+    },
+    "name": "One Piece",
+    "image": "product-image23.jpg",
+    "image2": "product-image23-1.jpg",
+    "price": "600",
+    "size": "large"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6717a27a66807cf2bea9"
+    },
+    "name": "Crop Tops",
+    "image": "product-image21.jpg",
+    "image2": "product-image21-1.jpg",
+    "price": "500",
+    "size": "medium"
+  }
+]

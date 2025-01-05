@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const userRegister = require('../models/user.models');
 const AdminRegister = require('../models/admin.models');
+const product = require('../models/Products');
 
 // Middleware to check if user is logged in
 function isLoggedIn(req, res, next) {
@@ -159,17 +160,17 @@ router.get('/adminRegister', function (req, res, next) {
   res.render('adminRegister', { error });
 });
 
-router.get('/adminHome', isAdminLoggedIn, function (req, res, next) {
-  const success = req.flash('success'); // Get the success message
-  const error = req.flash('error'); // Get the error message
-
+router.get('/adminHome', isAdminLoggedIn, async function (req, res, next) {
+  const success = req.flash('success');
+  const error = req.flash('error');
+  const prods = await product.find();
   const { username, fullname } = req.session.admin;
-  // Render 'adminHome' and pass the flash messages and admin data
   res.render('adminHome', {
-    success, // Pass success message
-    error, // Pass error message
-    username, // Pass admin username
-    fullname, // Pass admin fullname
+    success,
+    error,
+    username,
+    fullname,
+    prods: prods,
   });
 });
 
