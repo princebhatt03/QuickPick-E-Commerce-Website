@@ -1,3 +1,16 @@
+// script.js
+document
+  .getElementById('showCartButton')
+  .addEventListener('click', function () {
+    var cartDiv = document.getElementById('cart-container');
+    cartDiv.style.display = 'block';
+  });
+
+document.getElementById('hide').addEventListener('click', function () {
+  var cartDiv = document.getElementById('cart-container');
+  cartDiv.style.display = 'none';
+});
+
 (function ($) {
   'use strict';
   function pre_loader() {

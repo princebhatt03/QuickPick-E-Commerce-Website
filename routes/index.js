@@ -129,9 +129,10 @@ router.get('/blog', isLoggedIn, function (req, res, next) {
   res.render('blog', { username, name });
 });
 
-router.get('/cart', isLoggedIn, function (req, res, next) {
+router.get('/cart', isLoggedIn, async function (req, res, next) {
   const { username, name } = req.session.user;
-  res.render('cart', { username, name });
+  const prods = await product.find();
+  res.render('cart', { username, name, prods: prods });
 });
 
 router.get('/cart1', isLoggedIn, function (req, res, next) {

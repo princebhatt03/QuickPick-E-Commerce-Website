@@ -17,6 +17,9 @@ html {
   overflow: hidden;
   overflow-y: auto;
 }
+#cart-container {
+  display: none;
+}
 body {
   font-size: 13px;
   line-height: 1.5;

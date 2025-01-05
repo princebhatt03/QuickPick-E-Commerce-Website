@@ -1976,24 +1976,40 @@
                               ₹<%=prod.price %>
                             </button>
                           </div>
-                          <div class="product-name">
-                            <button
-                              onclick="alert('Item Added to Cart')"
-                              class="hover"
-                              style="
-                                width: auto;
-                                padding: 5px;
-                                margin: 2px;
-                                cursor: pointer;
-                                font-size: 15px;
-                                font-weight: 600;
-                              ">
-                              Add to cart
-                            </button>
-                          </div>
                         </div>
                       </div>
                       <% }) %>
+                    </div>
+                    <div
+                      class="d-flex justify-content-center align-items-center product-name">
+                      <button
+                        id="showCartButton"
+                        onclick="alert('Item Added to Cart')"
+                        class="hover"
+                        style="
+                          width: auto;
+                          padding: 15px;
+                          margin: 2px;
+                          cursor: pointer;
+                          font-size: 15px;
+                          font-weight: 600;
+                        ">
+                        Add these items to cart
+                      </button>
+                      <button
+                        id="hide"
+                        onclick="alert('Items removed from cart');"
+                        class="hover"
+                        style="
+                          width: auto;
+                          padding: 15px;
+                          margin: 2px;
+                          cursor: pointer;
+                          font-size: 15px;
+                          font-weight: 600;
+                        ">
+                        Remove items to cart
+                      </button>
                     </div>
                   </div>
                 </div>
