@@ -22,13 +22,16 @@ function isAdminLoggedIn(req, res, next) {
 
 // USER's GET ROUTES
 
-router.get('/', isLoggedIn, async function (req, res, next) {
+router.get('/', async function (req, res, next) {
   const success = req.flash('success');
   const error = req.flash('error');
   const prods = await product.find();
-  const { username, name } = req.session.user;
 
-  res.render('index', { username, name, success, error, prods: prods });
+  // If no user is logged in, pass empty strings for username and name
+  const username = req.session.user ? req.session.user.username : '';
+  const name = req.session.user ? req.session.user.name : '';
+
+  res.render('index', { username, name, success, error, prods });
 });
 
 router.get('/userProfile', isLoggedIn, (req, res) => {
