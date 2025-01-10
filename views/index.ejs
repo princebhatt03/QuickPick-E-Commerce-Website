@@ -92,7 +92,9 @@
               class="col-12 d-flex align-items-center justify-content-end col-sm-4 col-md-3 col-lg-4">
               <% if (username && name) { %>
               <!-- Content for logged-in users -->
-              <span class="user-menu d-block d-lg-none">
+              <span
+                style="position: absolute; top: -18px"
+                class="user-menu d-block d-lg-none">
                 <i
                   class="anm anm-user-al"
                   aria-hidden="true"></i>
@@ -1878,15 +1880,7 @@
                   <p>Browse the huge variety of our products</p>
                 </div>
                 <div class="tabs-listing">
-                  <ul class="tabs clearfix">
-                    <li
-                      class="active"
-                      rel="tab1">
-                      Women
-                    </li>
-                    <li rel="tab2">Men</li>
-                    <li rel="tab3">Sale</li>
-                  </ul>
+                  <ul class="tabs clearfix"></ul>
                   <div class="related-product grid-products">
                     <% if (prods && prods.length > 0) { %>
                     <h1 style="text-align: center; margin: 20px">
