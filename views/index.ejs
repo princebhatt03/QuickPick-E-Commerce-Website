@@ -32,6 +32,15 @@
       rel="stylesheet"
       href="/css/responsive.css" />
   </head>
+  <style>
+    @media (max-width: 767.98px) {
+      .position-mobile-absolute {
+        position: absolute;
+        top: -20px;
+        left: 56%;
+      }
+    }
+  </style>
   <body class="page-template belle">
     <div id="pre-loader">
       <img
@@ -65,10 +74,10 @@
           </button>
         </div>
       </div>
-      <div class="top-header">
+      <div class="top-header position-relative">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-10 col-sm-8 col-md-5 col-lg-4">
+            <div class="col-5 col-sm-8 col-md-5 col-lg-4">
               <div class="currency-picker">
                 <span class="">QuickPick</span>
               </div>
@@ -79,14 +88,15 @@
                 <p class="top-header_middle-text">Worldwide Express Shipping</p>
               </div>
             </div>
-            <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
+            <div
+              class="col-12 d-flex align-items-center justify-content-end col-sm-4 col-md-3 col-lg-4">
               <% if (username && name) { %>
               <!-- Content for logged-in users -->
-              <span class="user-menu d-block d-lg-none"
-                ><i
+              <span class="user-menu d-block d-lg-none">
+                <i
                   class="anm anm-user-al"
-                  aria-hidden="true"></i
-              ></span>
+                  aria-hidden="true"></i>
+              </span>
               <ul class="customer-links list-inline">
                 <li>
                   <a href="#"><div class="name"><%= username %></div></a>
@@ -95,17 +105,22 @@
                   <a href="#"><div class="about"><%= name %></div></a>
                 </li>
                 <li>
-                  <a href="/userProfile"
-                    ><div class="about">Edit Profile</div></a
-                  >
+                  <a href="/userProfile">
+                    <div class="about">Edit Profile</div>
+                  </a>
                 </li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
               <% } else { %>
               <!-- Content for guests -->
-              <ul class="guest-links list-inline">
+              <ul
+                id="not_logged"
+                class="guest-links position-mobile-absolute top-0 left-0 list-inline d-flex justify-content-end gap-2">
                 <li>
                   <a href="/userLogin">Login</a>
+                </li>
+                <li>
+                  <a href="/adminLogin">Login as Admin</a>
                 </li>
               </ul>
               <% } %>
@@ -113,6 +128,7 @@
           </div>
         </div>
       </div>
+
       <% if (messages.success && messages.success.length > 0) { %>
       <div class="alert alert-success"><%= messages.success %></div>
       <% } %> <% if (messages.error && messages.error.length > 0) { %>
@@ -922,6 +938,15 @@
                 <div
                   id="header-cart"
                   class="block block-cart">
+                  <h3
+                    style="
+                      font-family: Arial, Helvetica, sans-serif;
+                      padding-top: 5%;
+                      font-weight: 600;
+                    "
+                    class="text-center">
+                    Demo Cart
+                  </h3>
                   <ul class="mini-products-list">
                     <li class="item">
                       <a
@@ -1863,6 +1888,7 @@
                     <li rel="tab3">Sale</li>
                   </ul>
                   <div class="related-product grid-products">
+                    <% if (prods && prods.length > 0) { %>
                     <h1 style="text-align: center; margin: 20px">
                       Products Uploaded
                     </h1>
@@ -1906,7 +1932,7 @@
                                 font-size: 15px;
                                 font-weight: 600;
                               ">
-                              <%=prod.name %>
+                              <%= prod.name %>
                             </button>
                           </div>
                           <div class="product-name">
@@ -1921,7 +1947,7 @@
                                 font-size: 15px;
                                 font-weight: 600;
                               ">
-                              <%=prod.size %>
+                              <%= prod.size %>
                             </button>
                           </div>
                           <div class="product-name">
@@ -1936,7 +1962,7 @@
                                 font-size: 15px;
                                 font-weight: 600;
                               ">
-                              ₹<%=prod.price %>
+                              ₹<%= prod.price %>
                             </button>
                           </div>
                         </div>
@@ -1974,6 +2000,7 @@
                         Remove items to cart
                       </button>
                     </div>
+                    <% } %>
                   </div>
                 </div>
               </div>
