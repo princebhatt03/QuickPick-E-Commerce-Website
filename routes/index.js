@@ -26,8 +26,6 @@ router.get('/', async function (req, res, next) {
   const success = req.flash('success');
   const error = req.flash('error');
   const prods = await product.find();
-
-  // If no user is logged in, pass empty strings for username and name
   const username = req.session.user ? req.session.user.username : '';
   const name = req.session.user ? req.session.user.name : '';
 
@@ -184,21 +182,11 @@ router.get('/dashboard', isAdminLoggedIn, async (req, res) => {
   res.render('dashboard', { username, fullname });
 });
 
-// router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
-//   const success = req.flash('success');
-//   const error = req.flash('error');
-//   res.render('adminProfile', { success, error });
-// });
-
 router.get('/adminProfile', isAdminLoggedIn, function (req, res, next) {
-  // Retrieve the flash messages
   const success = req.flash('success');
   const error = req.flash('error');
   console.log(success, error);
-  // Get the logged-in admin's data from the session
   const { username, fullname, ID } = req.session.admin;
-
-  // Render the 'adminProfile' view and pass the admin data, success, and error messages
   res.render('adminProfile', {
     success,
     error,
@@ -219,22 +207,16 @@ router.post('/adminProfile', isAdminLoggedIn, async (req, res) => {
       confirmPassword,
     } = req.body;
     const adminId = req.session.admin.id;
-
-    // Fetch the admin from the database
     const admin = await AdminRegister.findById(adminId);
 
     if (!admin) {
       req.flash('error', 'Admin not found.');
       return res.redirect('/adminHome');
     }
-
-    // Verify the current password
     if (currentPassword && admin.password !== currentPassword) {
       req.flash('error', 'Current password is incorrect.');
-      return res.redirect('/adminHome'); // Exit without updating anything
+      return res.redirect('/adminHome');
     }
-
-    // Check if the new username or ID already exists (to avoid conflicts)
     const existingUsername = await AdminRegister.findOne({
       username,
       _id: { $ne: adminId },
@@ -252,30 +234,22 @@ router.post('/adminProfile', isAdminLoggedIn, async (req, res) => {
       req.flash('error', 'Admin ID already exists. Please choose another one.');
       return res.redirect('/adminHome');
     }
-
-    // Validate and update the password if provided
     if (newPassword || confirmPassword) {
       if (newPassword !== confirmPassword) {
         req.flash('error', 'New password and confirm password do not match.');
         return res.redirect('/adminHome');
       }
-      admin.password = newPassword; // Replace with a hashed password if applicable
+      admin.password = newPassword;
     }
-
-    // Update the admin's other details
     admin.fullname = fullname;
     admin.username = username;
     admin.ID = ID;
-
-    // Save the updated admin to the database
     await admin.save();
-
-    // Update session data to reflect changes
     req.session.admin.fullname = fullname;
     req.session.admin.username = username;
 
     req.flash('success', 'Profile updated successfully!');
-    res.redirect('/adminHome'); // Redirect to adminHome with success message
+    res.redirect('/adminHome');
   } catch (error) {
     req.flash('error', error.message);
     res.redirect('/adminHome');
@@ -289,22 +263,16 @@ router.post('/userProfile', isLoggedIn, async (req, res) => {
       req.body;
 
     const userId = req.session.user.id;
-
-    // Fetch the user from the database
     const user = await userRegister.findById(userId);
 
     if (!user) {
       req.flash('error', 'User not found.');
       return res.redirect('/');
     }
-
-    // Verify the current password
     if (currentPassword && user.password !== currentPassword) {
       req.flash('error', 'Current password is incorrect.');
-      return res.redirect('/'); // Exit without updating anything
+      return res.redirect('/');
     }
-
-    // Check if the new username already exists (to avoid conflicts)
     const existingUsername = await userRegister.findOne({
       username,
       _id: { $ne: userId },
@@ -313,29 +281,21 @@ router.post('/userProfile', isLoggedIn, async (req, res) => {
       req.flash('error', 'Username already exists. Please choose another one.');
       return res.redirect('/');
     }
-
-    // Validate and update the password if provided
     if (newPassword || confirmPassword) {
       if (newPassword !== confirmPassword) {
         req.flash('error', 'New password and confirm password do not match.');
         return res.redirect('/');
       }
-      user.password = newPassword; // Replace with hashed password if applicable
+      user.password = newPassword;
     }
-
-    // Update the user's other details
     user.name = name;
     user.username = username;
-
-    // Save the updated user to the database
     await user.save();
-
-    // Update session data to reflect changes
     req.session.user.name = name;
     req.session.user.username = username;
 
     req.flash('success', 'Profile updated successfully!');
-    res.redirect('/'); // Redirect to the user's home page with a success message
+    res.redirect('/');
   } catch (error) {
     req.flash('error', error.message);
     res.redirect('/');
@@ -378,12 +338,12 @@ router.post('/userLogin', async (req, res) => {
       req.flash('error', 'Username or Password is Incorrect');
       return res.redirect('/userLogin');
     }
-    // Create a session for the user
     req.session.user = {
       id: user._id,
       username: user.username,
       name: user.name,
     };
+    req.flash('success', 'Login Successful');
     res.status(201).redirect('/');
   } catch (error) {
     res.status(400).send(error.message);
@@ -415,6 +375,7 @@ router.post('/adminRegister', async function (req, res, next) {
       password: req.body.password,
     });
     await registerAdmin.save();
+    req.flash('success', 'Registration Successful! Please Login to Continue');
     res.status(201).redirect('/adminLogin');
   } catch (error) {
     res.status(400).send(error.message);
@@ -432,12 +393,12 @@ router.post('/adminLogin', async (req, res) => {
       req.flash('error', 'Username, Password, or ID is Incorrect');
       return res.redirect('/adminLogin');
     }
-    // Create a session for the admin
     req.session.admin = {
       id: admin._id,
       username: admin.username,
       fullname: admin.fullname,
     };
+    req.flash('success', 'Login Successful');
     res.status(201).redirect('/adminHome');
   } catch (error) {
     res.status(400).send(error.message);

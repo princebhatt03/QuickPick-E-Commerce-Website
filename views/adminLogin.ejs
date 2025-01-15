@@ -126,12 +126,10 @@
           </div>
         </div>
         <!-- Flash Messages -->
-        <% if (messages.error && messages.error.length > 0) { %>
-        <div class="text-center text-xl mb-4 error flash-message error">
-          <% messages.error.forEach(function(msg) { %>
-          <p class="error"><%= msg %></p>
-          <% }); %>
-        </div>
+        <% if (messages.success && messages.success.length > 0) { %>
+        <div class="alert alert-success"><%= messages.success %></div>
+        <% } %> <% if (messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-danger"><%= messages.error %></div>
         <% } %>
         <div class="container">
           <div class="row">

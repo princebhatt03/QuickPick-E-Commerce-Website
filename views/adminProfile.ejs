@@ -140,18 +140,11 @@
         </div>
       </div>
       <div id="page-content">
-        <div
-          class="container d-flex justify-content-center align-items-center flex-column">
-          <% if (typeof success !== 'undefined' && success.length > 0) { %>
-          <script>
-            alert('<%= success %>');
-          </script>
-          <% } %> <% if (typeof error !== 'undefined' && error.length > 0) { %>
-          <script>
-            alert('<%= error %>');
-          </script>
-          <% } %>
-
+          <% if (messages.success && messages.success.length > 0) { %>
+        <div class="alert alert-success"><%= messages.success %></div>
+        <% } %> <% if (messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-danger"><%= messages.error %></div>
+        <% } %>
           <!-- <img
             style="width: 15%; border-radius: 50%; border: 1px solid black"
             class="mt-4 mb-4 d-flex justify-content-center align-items-center"
@@ -211,7 +204,7 @@
                     <button
                       style="
                         margin-top: 10px;
-                        width: 30%;
+                        width: auto;
                         height: 5vh;
                         text-align: center;
                         cursor: pointer;

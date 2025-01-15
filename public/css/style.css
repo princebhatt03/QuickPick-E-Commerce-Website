@@ -460,6 +460,7 @@ th {
 ========================================================================*/
 .container {
   max-width: 1300px;
+  margin-top: 35px;
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -1477,7 +1478,7 @@ textarea:-ms-input-placeholder {
   padding-bottom: 35px;
 }
 .section-header {
-  margin-bottom: 35px;
+  /* margin-bottom: 35px; */
 }
 .pb-section {
   padding-bottom: 35px;
