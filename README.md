@@ -118,11 +118,8 @@ JWT_SECRET=your_jwt_secret
 ```
 
 📸 Screenshots
-```
 ![s1](https://github.com/user-attachments/assets/f1b3f55b-613b-4a39-8c71-f3755601723e)
-<br>
 ![s2](https://github.com/user-attachments/assets/0a18864f-c26f-4115-991c-6506baf900b8)
-```
 
 📌 Future Improvements
 ✅ Product Ratings & Reviews
